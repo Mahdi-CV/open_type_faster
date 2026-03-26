@@ -142,7 +142,8 @@ def render_results(
             color = colors.get(sug.priority, theme.muted)
             sug_text.append(f"{icon} ", style=color)
             sug_text.append(sug.message + "\n", style="white")
-        console.print(Panel(sug_text.rstrip(), title="Suggestions", border_style="yellow"))
+        sug_text.rstrip()
+        console.print(Panel(sug_text, title="Suggestions", border_style="yellow"))
 
     console.print()
 

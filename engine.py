@@ -112,11 +112,12 @@ class TypingSession:
             readchar.key.BACKSPACE,
             readchar.key.ENTER,
             readchar.key.TAB,
+            "\x7f",
         ):
             self.start_time = time.monotonic()
 
-        # Backspace
-        if key in (readchar.key.BACKSPACE,):
+        # Backspace — \x7f (DEL) is what most terminals send for backspace
+        if key in (readchar.key.BACKSPACE, "\x7f"):
             if self.typed and self.config.allow_backspace:
                 self.typed.pop()
                 self.backspaces += 1
@@ -199,7 +200,7 @@ def run(
         transient=False,
     ) as live:
         while True:
-            key = readchar.readkey()
+            key = readchar.readchar()
             done = session.process_key(key)
 
             # Refresh the display after every key
