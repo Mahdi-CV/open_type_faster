@@ -64,7 +64,7 @@ def render_typing_panel(
                 # Show what the user typed on the wrong character so they can
                 # see their mistake, with the target char underlined below it.
                 text.append(typed[i], style=f"{theme.error} underline")
-        elif i == len(typed):
+        elif i == len(typed) + 1:
             text.append(target_char, style=theme.cursor)
         else:
             text.append(target_char, style=theme.pending)

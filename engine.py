@@ -109,10 +109,8 @@ class TypingSession:
 
         # Start the timer on the first real keystroke
         if self.start_time is None and key not in (
-            readchar.key.BACKSPACE,
             readchar.key.ENTER,
             readchar.key.TAB,
-            "\x7f",
         ):
             self.start_time = time.monotonic()
 

@@ -53,6 +53,11 @@ class TestNetWpm:
         # 5 errors in 60 s → 5/1 = 5 wpm deduction → 55 WPM
         assert _net_wpm(gross, 5, 60.0) == 55.0
 
+    def test_short_session_with_errors(self):
+        # 5 errors in 30 s → deduction = 5 / 0.5 min = 10 WPM → net = 50.0
+        # Bug: errors * minutes gives 5 * 0.5 = 2.5 deduction → 57.5 (wrong)
+        assert _net_wpm(60.0, 5, 30.0) == 50.0
+
     def test_clamps_to_zero(self):
         # More errors than WPM → should not go negative
         assert _net_wpm(10.0, 1000, 60.0) == 0.0

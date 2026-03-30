@@ -77,7 +77,7 @@ def _net_wpm(gross: float, errors: int, duration: float) -> float:
     if duration < 0.1:
         return 0.0
     minutes = duration / 60.0
-    deduction = errors / minutes
+    deduction = errors * minutes
     return max(0.0, round(gross - deduction, 1))
 
 
