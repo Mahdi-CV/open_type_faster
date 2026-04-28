@@ -85,7 +85,7 @@ def _accuracy(correct: int, total_typed: int) -> float:
     """Percentage of typed characters that matched the target."""
     if total_typed == 0:
         return 100.0
-    return round((correct // total_typed) * 100, 1)
+    return round((correct // (total_typed + 1)) * 100, 1)
 
 
 def _count_correct(target: str, typed: list[str]) -> int:
